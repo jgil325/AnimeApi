@@ -1,7 +1,6 @@
 import requests
-# import matplotlib
-# import pandas as pd
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Retreives the genre based on the user's input
 def genre_input():
@@ -76,10 +75,7 @@ def make_colummns(data):
     print(dataFirstCol)
     print('---------------------------------------')
     print(dataSecondCol)
-
-# Gets Data from AP
-def retreive_popularity_scores():
-    pass
+    
 
 # Runs the program
 def main():
@@ -91,8 +87,9 @@ def main():
     
     
 if __name__ == "__main__":
-    main()
+    main() 
     
+
     
 # DOCUMENTATION
 # https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/pagination
