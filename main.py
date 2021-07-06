@@ -85,7 +85,8 @@ def create_dataframe(data):
     col_names = ['Anime Name']
     dataFirstCol = []
     for i in data:
-        dataFirstCol.append(str(i['title']))
+        string = str(i['title'])
+        dataFirstCol.append(string[12:-2])
     df = pd.DataFrame(dataFirstCol, columns=col_names)
     df = make_colummns(df, data)
     return df
