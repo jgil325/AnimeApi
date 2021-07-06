@@ -8,7 +8,7 @@ def user_input():
 
 # Here we define our query as a multi-line string
 query = '''
-query ($id: Int, $page: Int, $perPage: Int, $search: String) {
+query ($id: Int, $page: Int, $perPage: Int, $genre: String) {
     Page (page: $page, perPage: $perPage) {
         pageInfo {
             total
@@ -17,7 +17,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
             hasNextPage
             perPage
         }
-        media (id: $id, search: $search) {
+        media (id: $id, genre: $genre) {
             id
             title {
                 romaji
@@ -30,7 +30,9 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
 
 # Define our query variables and values that will be used in the query request
 variables = {
-    'search': 'Fate/Zero'
+    'genre': 'Fantasy',
+    'page': 1,
+    'perPage': 5
 }
 
 url = 'https://graphql.anilist.co'
@@ -40,3 +42,5 @@ response = requests.post(url, json={'query': query, 'variables': variables})
 print(response.json())
 
 # https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/pagination
+
+# https://anilist.github.io/ApiV2-GraphQL-Docs/
