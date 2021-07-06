@@ -34,7 +34,7 @@ CREATE TABLE `genreList` (
 
 LOCK TABLES `genreList` WRITE;
 /*!40000 ALTER TABLE `genreList` DISABLE KEYS */;
-INSERT INTO `genreList` VALUES ('Cowboy Bebop',202186),('Cowboy Bebop: Tengoku no Tobira',39228);
+INSERT INTO `genreList` VALUES ('Hachimitsu to Clover',31620),('School Rumble',32043);
 /*!40000 ALTER TABLE `genreList` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-06 20:52:37
+-- Dump completed on 2021-07-06 21:34:36

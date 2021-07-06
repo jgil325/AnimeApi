@@ -1,7 +1,8 @@
 import requests
-# import matplotlib
-# import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
 import os
 
@@ -100,7 +101,6 @@ def check_existing():
                                                            'dio@loc' +
                                                            'alhost/' +
                                                            'genreList'))
-
     
 def data_to_sql(df):
     # test uploading the dataframe to SQL
@@ -108,16 +108,30 @@ def data_to_sql(df):
     df.to_sql('genreList', con=engine, if_exists='replace', index=False)
 
 
+def create_bargraph(data):
+    dataFirstCol = []
+    dataSecondCol = []
+    for i in data:
+        string = str(i['title'])
+        dataFirstCol.append(string[12:-2])
+    for i in data:
+        dataSecondCol.append(i['popularity'])
+    dataSecondCol.sort()
+    print(dataFirstCol)
+    print(dataSecondCol)
+    plt.bar(dataFirstCol, dataSecondCol)
+
 # Runs the program
 def main():
     variables = make_variables()
     query = make_query()
     data = handle_response(query, variables)
-    print(data)
-    check_existing()
-    df = create_dataframe(data)
-    data_to_sql(df)
-    os.system("mysqldump -u root -pcodio genreList > genreList.sql")
+    create_bargraph(data)
+    #print(data)
+    #check_existing()
+    #df = create_dataframe(data)
+    #data_to_sql(df)
+    #os.system("mysqldump -u root -pcodio genreList > genreList.sql")
 
 
 if __name__ == "__main__":
