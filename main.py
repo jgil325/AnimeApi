@@ -2,13 +2,10 @@ import requests
 # import matplotlib
 # import matplotlib.pyplot as plt
 import pandas as pd
-# import numpy as np
 from sqlalchemy import create_engine
 import os
 
 # Retreives the genre based on the user's input
-
-
 def genre_input():
     return input("Enter a genre: ")
 
@@ -92,17 +89,17 @@ def create_dataframe(data):
     return df
 
 
-# def check_existing():
-#     # create the database
-#     os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
-#               'genreList' + '; "')
-#     # load
-#     os.system("mysql -u root -pcodio genreList < genreList.sql")
-#     df = pd.read_sql_table('genreList', con=create_engine('mysql:' +
-#                                                            '//root:co' +
-#                                                            'dio@loc' +
-#                                                            'alhost/' +
-#                                                            'genreList'))
+def check_existing():
+    # create the database
+    os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
+              'genreList' + '; "')
+    # load
+    os.system("mysql -u root -pcodio genreList < genreList.sql")
+    df = pd.read_sql_table('genreList', con=create_engine('mysql:' +
+                                                           '//root:co' +
+                                                           'dio@loc' +
+                                                           'alhost/' +
+                                                           'genreList'))
 
     
 def data_to_sql(df):
@@ -110,26 +107,23 @@ def data_to_sql(df):
     engine = create_engine('mysql://root:codio@localhost/genreList')
     df.to_sql('genreList', con=engine, if_exists='replace', index=False)
 
+
 # Runs the program
 def main():
     variables = make_variables()
     query = make_query()
     data = handle_response(query, variables)
     print(data)
-#     check_existing()
+    check_existing()
     df = create_dataframe(data)
     data_to_sql(df)
+    os.system("mysqldump -u root -pcodio genreList > genreList.sql")
 
 
 if __name__ == "__main__":
     main()
 
-
 # DOCUMENTATION
-
-# -------------
-# testing git mob with new commit
-# -------------
 
 # https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/pagination
 
