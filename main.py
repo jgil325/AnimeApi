@@ -68,20 +68,27 @@ def handle_response(query, variables):
 
 
 # Organizes the data into two columns, name and popularity
-def make_colummns(data):
-    dataFirstCol = []
-    for i in data:
-        dataFirstCol.append(i['title'])
-    df = create_dataframe(dataFirstCol)
+def make_colummns(df, data):
     dataSecondCol = []
     for i in data:
         dataSecondCol.append(i['popularity'])
     df.insert(1, "Popularity", dataSecondCol, True)
     return df
-    print('---------------------------------------')
-    print(dataFirstCol)
-    print('---------------------------------------')
-    print(dataSecondCol)
+    # print('---------------------------------------')
+    # print(dataFirstCol)
+    # print('---------------------------------------')
+    # print(dataSecondCol)
+
+
+def create_dataframe(data):
+    # test dataframe creation
+    col_names = ['Anime Name']
+    dataFirstCol = []
+    for i in data:
+        dataFirstCol.append(i['title'])
+    df = pd.DataFrame(dataFirstCol, columns=col_names)
+    df = make_colummns(df, data)
+    return df
 
 
 # def check_existing():
@@ -96,13 +103,21 @@ def make_colummns(data):
 #                                                            'alhost/' +
 #                                                            'genreList'))
 
+    
+def data_to_sql(df):
+    # test uploading the dataframe to SQL
+    engine = create_engine('mysql://root:codio@localhost/genreList')
+    df.to_sql('genreList', con=engine, if_exists='replace', index=False)
+
 # Runs the program
 def main():
     variables = make_variables()
     query = make_query()
     data = handle_response(query, variables)
     print(data)
-    make_colummns(data)
+#     check_existing()
+    df = create_dataframe(data)
+    data_to_sql(df)
 
 
 if __name__ == "__main__":
