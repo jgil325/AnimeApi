@@ -1,19 +1,25 @@
 import requests
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib
+# import matplotlib.pyplot as plt
+import pandas as pd
+# import numpy as np
+from sqlalchemy import create_engine
+import os
 
 # Retreives the genre based on the user's input
+
+
 def genre_input():
     return input("Enter a genre: ")
 
 
 # Retreives the number of anime shows based on the user's input
-def page_input(): 
+def page_input():
     return input("How many animes would you like displayed? ")
-  
+
 
 # Defines the query as a multi-line string to be used with GraphQL
-def make_query():  
+def make_query():
     query = '''
     query ($id: Int, $page: Int, $perPage: Int, $genre: String, $popularity: Int) {
         Page (page: $page, perPage: $perPage) {
@@ -51,31 +57,44 @@ def make_variables():
 def handle_response(query, variables):
     url = 'https://graphql.anilist.co'
     # Make the HTTP Api request
-    response = requests.post(url, json={'query': query, 'variables': variables})
+    response = requests.post(
+        url, json={'query': query, 'variables': variables})
     # testing filtering
     response = response.json()
     response = response['data']
     response = response['Page']
     response = response['media']
     return response
-  
-  
+
+
 # Organizes the data into two columns, name and popularity
 def make_colummns(data):
     dataFirstCol = []
     for i in data:
-      dataFirstCol.append(i['title'])
-#     df = create_dataframe(dataFirstCol)
+        dataFirstCol.append(i['title'])
+    df = create_dataframe(dataFirstCol)
     dataSecondCol = []
     for i in data:
-      dataSecondCol.append(i['popularity'])
-#     df.insert(1, "Popularity", dataSecondCol, True)
-#     return df
+        dataSecondCol.append(i['popularity'])
+    df.insert(1, "Popularity", dataSecondCol, True)
+    return df
     print('---------------------------------------')
     print(dataFirstCol)
     print('---------------------------------------')
     print(dataSecondCol)
-    
+
+
+# def check_existing():
+#     # create the database
+#     os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
+#               'genreList' + '; "')
+#     # load
+#     os.system("mysql -u root -pcodio genreList < genreList.sql")
+#     df = pd.read_sql_table('genreList', con=create_engine('mysql:' +
+#                                                            '//root:co' +
+#                                                            'dio@loc' +
+#                                                            'alhost/' +
+#                                                            'genreList'))
 
 # Runs the program
 def main():
@@ -84,12 +103,12 @@ def main():
     data = handle_response(query, variables)
     print(data)
     make_colummns(data)
-    
-    
+
+
 if __name__ == "__main__":
-    main() 
-    
-    
+    main()
+
+
 # DOCUMENTATION
 
 # -------------
