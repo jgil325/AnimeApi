@@ -13,6 +13,7 @@ from main import (
   main
 )
 
+
 class test(unittest.TestCase):
     def test_genre_input(self):
         self.assertIsNotNone(genre_input)
@@ -46,6 +47,7 @@ class test(unittest.TestCase):
 
     def test_main(self):
         self.assertIsNotNone(main)
+
 
 if __name__ == "__main__":
     unittest.main()
