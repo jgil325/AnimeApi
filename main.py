@@ -14,6 +14,7 @@ def genre_input():
 
 # Retreives the number of anime shows based on the user's input
 def page_input():
+#   This cannot be over a certain number
     return input("How many animes would you like displayed? ")
 
 
