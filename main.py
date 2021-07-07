@@ -108,7 +108,7 @@ def data_to_sql(df):
     engine = create_engine('mysql://root:codio@localhost/genreList')
     df.to_sql('genreList', con=engine, if_exists='replace', index=False)
 
-    
+  
 # Creates bar graph based on the data retreived 
 def create_bargraph(data):
     # Lists for Anime titles and Popularity count
@@ -121,8 +121,8 @@ def create_bargraph(data):
     # Loops to add Popularity count to the list, dataSecondCol
     for i in data:
         dataSecondCol.append(i['popularity'])
-#     Sort numbers
-#     dataSecondCol.sort()
+    # Sort numbers
+    # dataSecondCol.sort()
     # Adds color to graph bars
     New_Colors = ['green', 'blue', 'purple', 'brown', 'teal']
     # Adds spaces between the bars
@@ -148,7 +148,7 @@ def create_bargraph(data):
         plt.text(i.get_width()+0.2, i.get_y()+0.5,
                  str(round((i.get_width()), 2)),
                  fontsize=10, fontweight='bold',
-                 color ='grey')
+                 color='grey')
     # Add Plot Title
     ax.set_title(f'Top {len(dataFirstCol)} Animes', loc='left', fontsize=14)
     # Add Plot x-axis title
@@ -169,8 +169,8 @@ def main():
     data_to_sql(df)
     os.system("mysqldump -u root -pcodio genreList > genreList.sql")
     create_bargraph(data)
-    #print(data)
-    
+    # print(data)
+
 
 if __name__ == "__main__":
     main()
