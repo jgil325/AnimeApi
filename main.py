@@ -108,8 +108,8 @@ def data_to_sql(df):
     engine = create_engine('mysql://root:codio@localhost/genreList')
     df.to_sql('genreList', con=engine, if_exists='replace', index=False)
 
-  
-# Creates bar graph based on the data retreived 
+
+# Creates bar graph based on the data retreived
 def create_bargraph(data):
     # Lists for Anime titles and Popularity count
     dataFirstCol = []
