@@ -35,6 +35,7 @@ CREATE TABLE `genreList` (
 LOCK TABLES `genreList` WRITE;
 /*!40000 ALTER TABLE `genreList` DISABLE KEYS */;
 INSERT INTO `genreList` VALUES ('Cowboy Bebop',202462),('Trigun',69301),('Bouken Ou Beet',1506),('One Piece',244056),('Sunabouzu',13881),('Kenpuu Denki Berserk',59468),('Rurouni Kenshin: Meiji Kenkaku Romantan',44312),('Akira',93100),('.hack//Sign',18190),('Arc the Lad',1496);
+
 /*!40000 ALTER TABLE `genreList` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
