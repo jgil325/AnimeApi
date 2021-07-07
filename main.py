@@ -162,12 +162,13 @@ def main():
     variables = make_variables()
     query = make_query()
     data = handle_response(query, variables)
+    check_existing()
+    df = create_dataframe(data)
+    data_to_sql(df)
+    os.system("mysqldump -u root -pcodio genreList > genreList.sql")
     create_bargraph(data)
     #print(data)
-    #check_existing()
-    #df = create_dataframe(data)
-    #data_to_sql(df)
-    #os.system("mysqldump -u root -pcodio genreList > genreList.sql")
+    
 
 
 if __name__ == "__main__":
