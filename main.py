@@ -110,7 +110,7 @@ def data_to_sql(df):
 
 
 # Creates bar graph based on the data retreived
-def create_bargraph(data):
+def create_bargraph(data, genre):
     # Lists for Anime titles and Popularity count
     dataFirstCol = []
     dataSecondCol = []
@@ -150,11 +150,11 @@ def create_bargraph(data):
                  fontsize=10, fontweight='bold',
                  color='grey')
     # Add Plot Title
-    ax.set_title(f'Top {len(dataFirstCol)} Animes', loc='left', fontsize=14)
-    # Add Plot x-axis title
-    plt.xlabel('Anime Titles', fontsize=14)
+    ax.set_title(f'Top {len(dataFirstCol)} {genre[0:1].upper() + genre[1:len(genre)]} Animes', loc='left', fontsize=14)
     # Add Plot y-axis title
-    plt.ylabel('Popularity Amount', fontsize=14)
+    plt.ylabel('Anime Titles', fontsize=14)
+    # Add Plot x-axis title
+    plt.xlabel('Popularity Amount', fontsize=14)
     # Show Plot
     plt.show()
 
@@ -162,14 +162,15 @@ def create_bargraph(data):
 # Runs the program
 def main():
     variables = make_variables()
+    genre = variables['genre']
     query = make_query()
     data = handle_response(query, variables)
     check_existing()
     df = create_dataframe(data)
     data_to_sql(df)
     os.system("mysqldump -u root -pcodio genreList > genreList.sql")
-    create_bargraph(data)
-    # print(data)
+    create_bargraph(data, genre)
+#     print(data)
 
 
 if __name__ == "__main__":
