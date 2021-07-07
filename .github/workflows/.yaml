@@ -19,6 +19,7 @@ jobs:
           sudo pip install sqlalchemy
           sudo pip install matplotlib
           sudo pip install numpy
+          pip install coverage
 
       - name: Test with unittest
         run: |
