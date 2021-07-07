@@ -110,7 +110,7 @@ def data_to_sql(df):
 
 
 # Creates bar graph based on the data retreived
-def create_bargraph(data):
+def create_bargraph(data, genre):
     # Lists for Anime titles and Popularity count
     dic = {}
     # Loops to adds Anime titles and popularity amount to the dictionary, dic
@@ -162,14 +162,15 @@ def create_bargraph(data):
 # Runs the program
 def main():
     variables = make_variables()
+    genre = variables['genre']
     query = make_query()
     data = handle_response(query, variables)
     check_existing()
     df = create_dataframe(data)
     data_to_sql(df)
     os.system("mysqldump -u root -pcodio genreList > genreList.sql")
-    create_bargraph(data)
-    # print(data)
+    create_bargraph(data, genre)
+#     print(data)
 
 
 if __name__ == "__main__":
