@@ -122,7 +122,7 @@ def create_bargraph(data):
     for i in data:
         dataSecondCol.append(i['popularity'])
     # Sort numbers
-    # dataSecondCol.sort()
+    dataSecondCol.sort()
     # Adds color to graph bars
     New_Colors = ['green', 'blue', 'purple', 'brown', 'teal']
     # Adds spaces between the bars
@@ -141,8 +141,6 @@ def create_bargraph(data):
     ax.grid(b=True, color='grey',
             linestyle='-.', linewidth=0.5,
             alpha=0.2)
-    # Show top values
-    ax.invert_yaxis()
     # Add annotation to bars
     for i in ax.patches:
         plt.text(i.get_width()+0.2, i.get_y()+0.5,
@@ -152,9 +150,9 @@ def create_bargraph(data):
     # Add Plot Title
     ax.set_title(f'Top {len(dataFirstCol)} Animes', loc='left', fontsize=14)
     # Add Plot x-axis title
-    plt.xlabel('Anime Titles', fontsize=14)
+    plt.xlabel('Popularity Amount', fontsize=14)
     # Add Plot y-axis title
-    plt.ylabel('Popularity Amount', fontsize=14)
+    plt.ylabel('Anime Titles', fontsize=14)
     # Show Plot
     plt.show()
 
