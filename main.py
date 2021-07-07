@@ -89,15 +89,15 @@ def create_dataframe(data):
 
 def check_existing():
     # create the database
-    os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' + 
+    os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
               'genreList' + '; "')
     # load
     os.system("mysql -u root -pcodio genreList < genreList.sql")
     df = pd.read_sql_table('genreList', con=create_engine('mysql:' +
-                                                           '//root:co' +
-                                                           'dio@loc' +
-                                                           'alhost/' +
-                                                           'genreList'))
+                                                          '//root:co' +
+                                                          'dio@loc' +
+                                                          'alhost/' +
+                                                          'genreList'))
 
 
 def data_to_sql(df):
