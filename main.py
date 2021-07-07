@@ -1,10 +1,11 @@
 import requests
-# import matplotlib
-# import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plt
 import pandas as pd
-# import numpy as np
+import numpy as np
 from sqlalchemy import create_engine
 import os
+
 
 # Retreives the genre based on the user's input
 
@@ -21,7 +22,8 @@ def page_input():
 # Defines the query as a multi-line string to be used with GraphQL
 def make_query():
     query = '''
-    query ($id: Int, $page: Int, $perPage: Int, $genre: String, $popularity: Int) {
+    query ($id: Int, $page: Int, $perPage: Int,
+    $genre: String, $popularity: Int) {
         Page (page: $page, perPage: $perPage) {
             pageInfo {
                 total
@@ -74,10 +76,6 @@ def make_colummns(df, data):
         dataSecondCol.append(i['popularity'])
     df.insert(1, "Popularity", dataSecondCol, True)
     return df
-    # print('---------------------------------------')
-    # print(dataFirstCol)
-    # print('---------------------------------------')
-    # print(dataSecondCol)
 
 
 def create_dataframe(data):
@@ -99,37 +97,87 @@ def check_existing():
     # load
     os.system("mysql -u root -pcodio genreList < genreList.sql")
     df = pd.read_sql_table('genreList', con=create_engine('mysql:' +
-                                                           '//root:co' +
-                                                           'dio@loc' +
-                                                           'alhost/' +
-                                                           'genreList'))
+                                                          '//root:co' +
+                                                          'dio@loc' +
+                                                          'alhost/' +
+                                                          'genreList'))
 
-    
+
 def data_to_sql(df):
     # test uploading the dataframe to SQL
     engine = create_engine('mysql://root:codio@localhost/genreList')
     df.to_sql('genreList', con=engine, if_exists='replace', index=False)
+
+    
+# Creates bar graph based on the data retreived 
+def create_bargraph(data):
+    # Lists for Anime titles and Popularity count
+    dataFirstCol = []
+    dataSecondCol = []
+    # Loops to add Anime titles to the list, dataFirstCol
+    for i in data:
+        string = str(i['title'])
+        dataFirstCol.append(string[12:-2])
+    # Loops to add Popularity count to the list, dataSecondCol
+    for i in data:
+        dataSecondCol.append(i['popularity'])
+#     # Sort numbers
+#     dataSecondCol.sort()
+    # Adds color to graph bars
+    New_Colors = ['green','blue','purple','brown','teal']
+    # Adds spaces between the bars
+    bar_width = 0.4
+    # Figure Size
+    fig, ax = plt.subplots(figsize =(16, 9))
+    # Horizontal Bar Plot
+    ax.barh(dataFirstCol, dataSecondCol, bar_width, color=New_Colors)
+    # Remove axes splines
+    for s in ['top', 'bottom', 'left', 'right']:
+        ax.spines[s].set_visible(False)
+    # Remove x, y Ticks
+    ax.xaxis.set_ticks_position('none')
+    ax.yaxis.set_ticks_position('none')
+    # Add x, y gridlines
+    ax.grid(b = True, color ='grey',
+            linestyle ='-.', linewidth = 0.5,
+            alpha = 0.2)
+    # Show top values
+    ax.invert_yaxis()
+    # Add annotation to bars
+    for i in ax.patches:
+        plt.text(i.get_width()+0.2, i.get_y()+0.5,
+                 str(round((i.get_width()), 2)),
+                 fontsize = 10, fontweight ='bold',
+                 color ='grey')
+    # Add Plot Title
+    ax.set_title(f'Top {len(dataFirstCol)} Animes', loc ='left', fontsize=14)
+    # Add Plot x-axis title
+    plt.xlabel('Anime Titles', fontsize=14)
+    # Add Plot y-axis title
+    plt.ylabel('Popularity Amount', fontsize=14)
+    # Show Plot
+    plt.show()
+
 
 # Runs the program
 def main():
     variables = make_variables()
     query = make_query()
     data = handle_response(query, variables)
-    print(data)
     check_existing()
     df = create_dataframe(data)
     data_to_sql(df)
+    os.system("mysqldump -u root -pcodio genreList > genreList.sql")
+    create_bargraph(data)
+    #print(data)
+    
+
 
 
 if __name__ == "__main__":
     main()
 
-
 # DOCUMENTATION
-
-# -------------
-# testing git mob with new commit
-# -------------
 
 # https://anilist.gitbook.io/anilist-apiv2-docs/overview/graphql/pagination
 

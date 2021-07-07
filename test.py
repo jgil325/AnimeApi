@@ -9,6 +9,7 @@ from main import (
   create_dataframe,
   check_existing,
   data_to_sql,
+  create_bargraph,
   main
 )
 
@@ -41,10 +42,13 @@ class test(unittest.TestCase):
     def test_data_to_sql(self):
         self.assertIsNotNone(data_to_sql)
         
+    def test_create_bargraph(self):
+        self.assertIsNotNone(create_bargraph)
+        
     def test_main(self):
         self.assertIsNotNone(main)
         
         
-# if __name__ == "__main__":
-#     unittest.main()
+if __name__ == "__main__":
+    unittest.main()
     
