@@ -71,10 +71,6 @@ def make_colummns(df, data):
         dataSecondCol.append(i['popularity'])
     df.insert(1, "Popularity", dataSecondCol, True)
     return df
-    # print('---------------------------------------')
-    # print(dataFirstCol)
-    # print('---------------------------------------')
-    # print(dataSecondCol)
 
 
 def create_dataframe(data):
