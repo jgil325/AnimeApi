@@ -34,8 +34,7 @@ CREATE TABLE `genreList` (
 
 LOCK TABLES `genreList` WRITE;
 /*!40000 ALTER TABLE `genreList` DISABLE KEYS */;
-INSERT INTO `genreList` VALUES ('Cowboy Bebop',202462),('Trigun',69301),('Bouken Ou Beet',1506),('One Piece',244056),('Sunabouzu',13881),('Kenpuu Denki Berserk',59468),('Rurouni Kenshin: Meiji Kenkaku Romantan',44312),('Akira',93100),('.hack//Sign',18190),('Arc the Lad',1496);
-
+INSERT INTO `genreList` VALUES ('Cowboy Bebop',202462),('Cowboy Bebop: Tengoku no Tobira',39263),('Trigun',69301),('Witch Hunter Robin',10264),('Eyeshield 21',17757),('Initial D Fourth Stage',18962);
 /*!40000 ALTER TABLE `genreList` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-07 16:22:46
+-- Dump completed on 2021-07-07 21:16:05
