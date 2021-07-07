@@ -120,8 +120,8 @@ def create_bargraph(data):
     # Loops to add Popularity count to the list, dataSecondCol
     for i in data:
         dataSecondCol.append(i['popularity'])
-    # Sort numbers
-    dataSecondCol.sort()
+#     # Sort numbers
+#     dataSecondCol.sort()
     # Adds color to graph bars
     New_Colors = ['green','blue','purple','brown','teal']
     # Adds spaces between the bars
