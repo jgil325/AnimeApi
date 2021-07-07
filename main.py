@@ -6,6 +6,7 @@ import numpy as np
 from sqlalchemy import create_engine
 import os
 
+
 # Retreives the genre based on the user's input
 def genre_input():
     return input("Enter a genre: ")
@@ -19,7 +20,8 @@ def page_input():
 # Defines the query as a multi-line string to be used with GraphQL
 def make_query():
     query = '''
-    query ($id: Int, $page: Int, $perPage: Int, $genre: String, $popularity: Int) {
+    query ($id: Int, $page: Int, $perPage: Int,
+    $genre: String, $popularity: Int) {
         Page (page: $page, perPage: $perPage) {
             pageInfo {
                 total
@@ -72,10 +74,6 @@ def make_colummns(df, data):
         dataSecondCol.append(i['popularity'])
     df.insert(1, "Popularity", dataSecondCol, True)
     return df
-    # print('---------------------------------------')
-    # print(dataFirstCol)
-    # print('---------------------------------------')
-    # print(dataSecondCol)
 
 
 def create_dataframe(data):
@@ -97,11 +95,12 @@ def check_existing():
     # load
     os.system("mysql -u root -pcodio genreList < genreList.sql")
     df = pd.read_sql_table('genreList', con=create_engine('mysql:' +
-                                                           '//root:co' +
-                                                           'dio@loc' +
-                                                           'alhost/' +
-                                                           'genreList'))
-    
+                                                          '//root:co' +
+                                                          'dio@loc' +
+                                                          'alhost/' +
+                                                          'genreList'))
+
+
 def data_to_sql(df):
     # test uploading the dataframe to SQL
     engine = create_engine('mysql://root:codio@localhost/genreList')
