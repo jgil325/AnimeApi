@@ -107,7 +107,8 @@ def data_to_sql(df):
     engine = create_engine('mysql://root:codio@localhost/genreList')
     df.to_sql('genreList', con=engine, if_exists='replace', index=False)
 
-
+    
+# Creates bar graph based on the data retreived 
 def create_bargraph(data):
     dataFirstCol = []
     dataSecondCol = []
@@ -120,6 +121,8 @@ def create_bargraph(data):
     print(dataFirstCol)
     print(dataSecondCol)
     plt.bar(dataFirstCol, dataSecondCol)
+    plt.show()
+
 
 # Runs the program
 def main():
