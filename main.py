@@ -121,14 +121,14 @@ def create_bargraph(data):
     # Loops to add Popularity count to the list, dataSecondCol
     for i in data:
         dataSecondCol.append(i['popularity'])
-#     # Sort numbers
+#     Sort numbers
 #     dataSecondCol.sort()
     # Adds color to graph bars
-    New_Colors = ['green','blue','purple','brown','teal']
+    New_Colors = ['green', 'blue', 'purple', 'brown', 'teal']
     # Adds spaces between the bars
     bar_width = 0.4
     # Figure Size
-    fig, ax = plt.subplots(figsize =(16, 9))
+    fig, ax = plt.subplots(figsize=(16, 9))
     # Horizontal Bar Plot
     ax.barh(dataFirstCol, dataSecondCol, bar_width, color=New_Colors)
     # Remove axes splines
@@ -138,19 +138,19 @@ def create_bargraph(data):
     ax.xaxis.set_ticks_position('none')
     ax.yaxis.set_ticks_position('none')
     # Add x, y gridlines
-    ax.grid(b = True, color ='grey',
-            linestyle ='-.', linewidth = 0.5,
-            alpha = 0.2)
+    ax.grid(b=True, color='grey',
+            linestyle='-.', linewidth=0.5,
+            alpha=0.2)
     # Show top values
     ax.invert_yaxis()
     # Add annotation to bars
     for i in ax.patches:
         plt.text(i.get_width()+0.2, i.get_y()+0.5,
                  str(round((i.get_width()), 2)),
-                 fontsize = 10, fontweight ='bold',
+                 fontsize=10, fontweight='bold',
                  color ='grey')
     # Add Plot Title
-    ax.set_title(f'Top {len(dataFirstCol)} Animes', loc ='left', fontsize=14)
+    ax.set_title(f'Top {len(dataFirstCol)} Animes', loc='left', fontsize=14)
     # Add Plot x-axis title
     plt.xlabel('Anime Titles', fontsize=14)
     # Add Plot y-axis title
@@ -171,8 +171,6 @@ def main():
     create_bargraph(data)
     #print(data)
     
-
-
 
 if __name__ == "__main__":
     main()
