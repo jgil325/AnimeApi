@@ -151,7 +151,7 @@ def create_bargraph(data, genre):
                  fontsize=10, fontweight='bold',
                  color='grey')
     # Add Plot Title
-    ax.set_title(f'Top {len(dataFirstCol)}'+
+    ax.set_title(f'Top {len(dataFirstCol)}' +
                  f' {(genre[0:1].upper() + genre[1:len(genre)])} Animes',
                  loc='left', fontsize=14)
     # Add Plot x-axis title
