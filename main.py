@@ -6,7 +6,6 @@ import numpy as np
 from sqlalchemy import create_engine
 import os
 
-
 # Retreives the genre based on the user's input
 
 
@@ -160,10 +159,10 @@ def create_bargraph(data, genre):
     plt.ylabel('Anime Titles', fontsize=14)
     # Show Plot
     plt.ion()
-    user_input = 0
-    while(user_input != "1"):
+    user_input = ""
+    while(user_input != "exit"):
       plt.show()
-      user_input = input("Enter [1] to exit:")
+      user_input = input("Enter [exit] to terminate program: ")
     
 
 
