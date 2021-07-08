@@ -112,23 +112,25 @@ def data_to_sql(df):
 # Creates bar graph based on the data retreived
 def create_bargraph(data, genre):
     # Lists for Anime titles and Popularity count
-    dataFirstCol = []
-    dataSecondCol = []
-    # Loops to add Anime titles to the list, dataFirstCol
+    dic = {}
+    # Loops to adds Anime titles and popularity amount to the dictionary, dic
     for i in data:
         string = str(i['title'])
-        dataFirstCol.append(string[12:-2])
-    # Loops to add Popularity count to the list, dataSecondCol
-    for i in data:
-        dataSecondCol.append(i['popularity'])
-    # Sort numbers
-    dataSecondCol.sort()
+        dic[f'{string[12:-2]}'] = i['popularity']
+    # Sort dic by value
+    data_list = sorted(dic.items(), key=lambda x:x[1])
+    # Convert list to dic
+    sortdic = dict(data_list)
+    # Convert keys and values as a list
+    dataFirstCol = list(sortdic.keys())
+    dataSecondCol = list(sortdic.values())
     # Adds color to graph bars
     New_Colors = ['green', 'blue', 'purple', 'brown', 'teal']
     # Adds spaces between the bars
     bar_width = 0.4
     # Figure Size
-    fig, ax = plt.subplots(figsize=(16, 9))
+    fig, ax = plt.subplots()
+    plt.subplots_adjust(left=.22, bottom=.124, right=.89, top=.843, wspace=.198, hspace=.202)
     # Horizontal Bar Plot
     ax.barh(dataFirstCol, dataSecondCol, bar_width, color=New_Colors)
     # Remove axes splines
@@ -139,14 +141,14 @@ def create_bargraph(data, genre):
     ax.yaxis.set_ticks_position('none')
     # Add x, y gridlines
     ax.grid(b=True, color='grey',
-            linestyle='-.', linewidth=0.5,
-            alpha=0.2)
+             linestyle='-.', linewidth=0.5,
+             alpha=0.2)
     # Add annotation to bars
     for i in ax.patches:
         plt.text(i.get_width()+0.2, i.get_y()+0.5,
-                 str(round((i.get_width()), 2)),
-                 fontsize=10, fontweight='bold',
-                 color='grey')
+                  str(round((i.get_width()), 2)),
+                  fontsize=10, fontweight='bold',
+                  color='grey')
     # Add Plot Title
     ax.set_title(f'Top {len(dataFirstCol)} Animes', loc='left', fontsize=14)
     # Add Plot x-axis title
