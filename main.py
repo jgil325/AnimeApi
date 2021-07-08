@@ -170,7 +170,7 @@ def create_bargraph(data, genre):
     while(user_input != "exit"):
         plt.show()
         user_input = input("Enter [exit] to terminate program: ")
-    
+
 
 # Runs the program
 def main():
