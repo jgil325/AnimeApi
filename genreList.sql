@@ -34,7 +34,7 @@ CREATE TABLE `genreList` (
 
 LOCK TABLES `genreList` WRITE;
 /*!40000 ALTER TABLE `genreList` DISABLE KEYS */;
-INSERT INTO `genreList` VALUES ('Hachimitsu to Clover',31687),('School Rumble',32095),('Rurouni Kenshin: Meiji Kenkaku Romantan - Tsuioku-hen',24973),('Rurouni Kenshin: Meiji Kenkaku Romantan',44358),('Aa! Megami-sama!',5347);
+INSERT INTO `genreList` VALUES ('Hachimitsu to Clover',31687),('School Rumble',32095),('Rurouni Kenshin: Meiji Kenkaku Romantan - Tsuioku-hen',24973),('Rurouni Kenshin: Meiji Kenkaku Romantan',44358),('Aa! Megami-sama!',5347),('Aa! Megami-sama! (TV)',13373);
 /*!40000 ALTER TABLE `genreList` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-08 16:02:23
+-- Dump completed on 2021-07-08 16:50:42

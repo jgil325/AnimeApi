@@ -159,7 +159,13 @@ def create_bargraph(data, genre):
     # Add Plot y-axis title
     plt.ylabel('Anime Titles', fontsize=14)
     # Show Plot
-    plt.show()
+    plt.ion()
+    user_input = 0
+    while(user_input != "1"):
+      plt.show()
+      user_input = input("Enter [1] to exit:")
+    
+
 
 
 # Runs the program
@@ -173,7 +179,7 @@ def main():
     data_to_sql(df)
     os.system("mysqldump -u root -pcodio genreList > genreList.sql")
     create_bargraph(data, genre)
-#     print(data)
+    #     print(data)
 
 
 if __name__ == "__main__":
