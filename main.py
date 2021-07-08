@@ -16,7 +16,7 @@ def genre_input():
 
 # Retreives the number of anime shows based on the user's input
 def page_input():
-#   This cannot be over a certain number
+    #   This cannot be over a certain number
     page = int(input("How many animes would you like displayed (1 - 20)? "))
     if(page <= 20 and page > 0):
         return str(page)
@@ -24,7 +24,6 @@ def page_input():
         while(page > 20 or page <= 0):
             page = int(input("Please Enter a number between 1 and 20: "))
         return str(page)
-
 
 
 # Defines the query as a multi-line string to be used with GraphQL
