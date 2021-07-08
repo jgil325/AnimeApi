@@ -6,7 +6,6 @@ import numpy as np
 from sqlalchemy import create_engine
 import os
 
-
 # Retreives the genre based on the user's input
 
 
@@ -166,7 +165,13 @@ def create_bargraph(data, genre):
     # Add Plot y-axis title
     plt.ylabel('Anime Titles', fontsize=14)
     # Show Plot
-    plt.show()
+    plt.ion()
+    user_input = ""
+    while(user_input != "exit"):
+      plt.show()
+      user_input = input("Enter [exit] to terminate program: ")
+    
+
 
 
 # Runs the program
@@ -180,7 +185,7 @@ def main():
     data_to_sql(df)
     os.system("mysqldump -u root -pcodio genreList > genreList.sql")
     create_bargraph(data, genre)
-#     print(data)
+    #     print(data)
 
 
 if __name__ == "__main__":
