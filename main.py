@@ -118,7 +118,7 @@ def create_bargraph(data, genre):
         string = str(i['title'])
         dic[f'{string[12:-2]}'] = i['popularity']
     # Sort dic by value
-    data_list = sorted(dic.items(), key=lambda x:x[1])
+    data_list = sorted(dic.items(), key=lambda x : x[1])
     # Convert list to dic
     sortdic = dict(data_list)
     # Convert keys and values as a list
@@ -130,7 +130,8 @@ def create_bargraph(data, genre):
     bar_width = 0.4
     # Figure Size
     fig, ax = plt.subplots()
-    plt.subplots_adjust(left=.22, bottom=.124, right=.89, top=.843, wspace=.198, hspace=.202)
+    plt.subplots_adjust(left=.22, bottom=.124, right=.89, 
+                        top=.843, wspace=.198, hspace=.202)
     # Horizontal Bar Plot
     ax.barh(dataFirstCol, dataSecondCol, bar_width, color=New_Colors)
     # Remove axes splines
@@ -141,8 +142,8 @@ def create_bargraph(data, genre):
     ax.yaxis.set_ticks_position('none')
     # Add x, y gridlines
     ax.grid(b=True, color='grey',
-             linestyle='-.', linewidth=0.5,
-             alpha=0.2)
+            linestyle='-.', linewidth=0.5,
+            alpha=0.2)
     # Add annotation to bars
     for i in ax.patches:
         plt.text(i.get_width()+0.2, i.get_y()+0.5,
